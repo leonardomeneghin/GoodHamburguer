@@ -1,0 +1,16 @@
+## Application layer.
+Responsible for expose end-points and handle requests to guide to another services.
+Logs can be placed here, because is easy to handle the returns on try catch, and its useful to log there.
+
+## Service Layer
+Responsible for handle business logic and validations.
+
+## Domain Layer
+Responsible for implementation of classes and models that will map the database.
+Also has DTO, VO, enums, etc.
+
+##Infrastructure
+Divided by two sub layers:
+	- Data : Will CRUD database, may use a ORM.
+	- CrossCutting : CrossDomainLayer methods, they can be used anywhere.
+
