@@ -5,11 +5,23 @@ namespace GoodHamburguerAPI.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{ApiVersion}/[controller]")]
     public class MenuController : Controller
     {
+        #region api-global-settings
+        protected string controllerName = "MenuController";
+        #endregion
+
+
+        [HttpGet]
+
+        public IActionResult Get()
+        {
+            return Ok($"Service {controllerName} is running");
+        }
         //TODO: Requirement 01 List sandwishes and extras
         [HttpGet]
+        [Route("ListSandwichAndExtras")]
         public IActionResult ListAllSandwichAndExtras()
         {
             try

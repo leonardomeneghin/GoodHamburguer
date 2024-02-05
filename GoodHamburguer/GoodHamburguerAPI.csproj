@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Business\" />
+    <Folder Include="Business\implementations\" />
+    <Folder Include="Business\Validators\" />
     <Folder Include="db\datasets\" />
     <Folder Include="db\preload\" />
   </ItemGroup>

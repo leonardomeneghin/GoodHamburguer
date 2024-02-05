@@ -10,6 +10,7 @@ namespace GoodHamburguerAPI.Controllers
     {
         //TODO: Requirement 06: Create a endpoint to list all orders
         [HttpGet]
+        [Route("ListOrders")]
         public IActionResult GetOrders()
         {
             try
