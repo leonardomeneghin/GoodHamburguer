@@ -21,10 +21,10 @@ namespace GoodHamburguerAPI
             //Log configs
             var connection = builder.Configuration["SQLServerConnection:SQLServerConnectionString"] ?? throw new Exception("Must define connection string");
 
-            //var sinkOptions = new SerilogConfigurationHelper().BuildSinkOptions(SerilogConfigurationHelper.GOOD_HAMBURGUER_TABLE_LOG);
-            //Log.Logger = new LoggerConfiguration()
-            //.WriteTo.MSSqlServer(connection, sinkOptions)
-            //.CreateLogger();
+            var sinkOptions = new SerilogConfigurationHelper().BuildSinkOptions(SerilogConfigurationHelper.GOOD_HAMBURGUER_TABLE_LOG);
+            Log.Logger = new LoggerConfiguration()
+            .WriteTo.MSSqlServer(connection, sinkOptions)
+            .CreateLogger();
 
             //add dbcontext here
 

@@ -24,7 +24,6 @@
     <Folder Include="Business\" />
     <Folder Include="db\datasets\" />
     <Folder Include="db\preload\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>
