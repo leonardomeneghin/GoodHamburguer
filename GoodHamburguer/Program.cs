@@ -1,9 +1,14 @@
 
+using GoodHamburguerAPI.Business;
+using GoodHamburguerAPI.Business.implementations;
 using GoodHamburguerAPI.db.Services;
 using GoodHamburguerAPI.Helper;
+using GoodHamburguerAPI.Repository;
+using GoodHamburguerAPI.Repository.Implementation;
 using Infrastructure.Model.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.WebSockets;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Sinks.MSSqlServer.Sinks.MSSqlServer.Options;
@@ -36,6 +41,9 @@ namespace GoodHamburguerAPI
                 ServiceMigration.MigrateDataBase(connection);
             }
             //add dependency injection here
+            builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
+
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
