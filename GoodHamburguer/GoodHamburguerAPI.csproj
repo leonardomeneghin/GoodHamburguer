@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Evolve" Version="3.2.0" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
@@ -18,13 +19,6 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.5.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Business\implementations\" />
-    <Folder Include="Business\Validators\" />
-    <Folder Include="db\datasets\" />
-    <Folder Include="db\preload\" />
   </ItemGroup>
 
 </Project>

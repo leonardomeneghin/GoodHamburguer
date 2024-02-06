@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using GoodHamburguerAPI.Business;
+using GoodHamburguerAPI.Business.implementations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoodHamburguerAPI.Controllers
@@ -6,13 +8,17 @@ namespace GoodHamburguerAPI.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/v{ApiVersion}/[controller]")]
-    public class MenuController : Controller
+    public class ProductController : Controller
     {
         #region api-global-settings
-        protected string controllerName = "MenuController";
+        protected string controllerName = "ProductController";
+        private IProductBusiness _menuBusiness;
         #endregion
 
-
+        ProductController(IProductBusiness product)
+        {
+            _menuBusiness = product;
+        }
         [HttpGet]
 
         public IActionResult Get()
@@ -26,6 +32,7 @@ namespace GoodHamburguerAPI.Controllers
         {
             try
             {
+                _menuBusiness.ListAllMenuItems();
                 return Ok();
                 //Log Sucess
             }
