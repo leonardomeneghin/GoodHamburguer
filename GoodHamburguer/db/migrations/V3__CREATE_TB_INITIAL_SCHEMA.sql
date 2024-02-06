@@ -1,5 +1,5 @@
 ﻿--Define Orders
-CREATE TABLE [orders] (
+CREATE TABLE [order] (
   [id_order] INT IDENTITY(1,1) NOT NULL,
   [date_order] DATETIME,
   [total_price] DECIMAL(9, 4) DEFAULT 0,
@@ -7,7 +7,7 @@ CREATE TABLE [orders] (
 
 );
 --orders PK
-ALTER TABLE [orders] ADD CONSTRAINT [PK_orders] PRIMARY KEY CLUSTERED ([id_order] ASC);
+ALTER TABLE [order] ADD CONSTRAINT [PK_orders] PRIMARY KEY CLUSTERED ([id_order] ASC);
 
 --Define ordered_item
 CREATE TABLE [item_ordered](
@@ -18,7 +18,7 @@ CREATE TABLE [item_ordered](
 
 --ordered item PK and FK to item ordered
 ALTER TABLE [item_ordered] ADD CONSTRAINT [PK_id_item_ordered] PRIMARY KEY CLUSTERED ([id_item_ordered] ASC)
-ALTER TABLE [item_ordered] ADD CONSTRAINT [FK_orders_item_ordered] FOREIGN KEY ([id_order]) REFERENCES [orders]
+ALTER TABLE [item_ordered] ADD CONSTRAINT [FK_orders_item_ordered] FOREIGN KEY ([id_order]) REFERENCES [order]
 
 --product table, pk and fk to item ordered.
 CREATE TABLE [product](

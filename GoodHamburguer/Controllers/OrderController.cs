@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GoodHamburguerAPI.Business;
+using GoodHamburguerAPI.Model;
+using GoodHamburguerAPI.Model.GoodHamburguer;
+using GoodHamburguerAPI.Repository;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace GoodHamburguerAPI.Controllers
 {
@@ -8,6 +13,11 @@ namespace GoodHamburguerAPI.Controllers
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
+        private IOrderBusiness _business;
+        public OrderController(IOrderBusiness business)
+        {
+            _business = business;
+        }
         //TODO: Requirement 06: Create a endpoint to list all orders
         [HttpGet]
         [Route("ListOrders")]
@@ -15,22 +25,23 @@ namespace GoodHamburguerAPI.Controllers
         {
             try
             {
-                return Ok();
+                return Ok(_business.ListOrders());
+                //Log sucess
             }
             catch (Exception)
             {
-
+                //Log error
                 return BadRequest();
             }
         }
         //TODO: Requirement 05: Create a endpoint to send order and return price.
-        //obs.: can insert here
         [HttpPost]
-        public IActionResult SendOrder()
+        [Route("SendOrder")]
+        public IActionResult SendOrder([FromBody] List<Product> products)
         {
             try
             {
-                return Ok();
+                return Ok(_business.MakeOrder(products));
             }
             catch (Exception)
             {

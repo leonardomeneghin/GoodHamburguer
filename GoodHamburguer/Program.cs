@@ -34,18 +34,21 @@ namespace GoodHamburguerAPI
 
             //add dbcontext here
 
-            builder.Services.AddDbContext<GoodHamburguerContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddDbContext<GoodHamburguerContext>();
 
             //migrations
             if (builder.Environment.IsDevelopment())
             {
+
                 ServiceMigration.MigrateDataBase(connection);
             }
             //add dependency injection here
             builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
+            builder.Services.AddScoped<IOrderBusiness, OrderBusiness>();
 
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GoodHamburguerAPI.Controllers
 {
-    [ApiVersion("1.0")]
+    [ApiVersion("1")]
     [ApiController]
     [Route("api/v{ApiVersion}/[controller]")]
     public class ProductController : Controller
@@ -15,7 +15,7 @@ namespace GoodHamburguerAPI.Controllers
         private IProductBusiness _productBusiness;
         #endregion
 
-        ProductController(IProductBusiness product)
+        public ProductController(IProductBusiness product)
         {
             _productBusiness = product;
         }
@@ -32,8 +32,7 @@ namespace GoodHamburguerAPI.Controllers
         {
             try
             {
-                _productBusiness.ListAllMenuItems();
-                return Ok();
+                return Ok(_productBusiness.ListAllMenuItems());
                 //Log Sucess
             }
             catch (Exception ex)

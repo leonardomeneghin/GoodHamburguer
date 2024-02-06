@@ -9,7 +9,7 @@ namespace GoodHamburguerAPI.Repository.Implementations
         {
             using (var context = new GoodHamburguerContext())
             {
-                return(from p in context.TbProducts
+                return (from p in context.TbProducts
                         join pt in context.TbItemTypes on p.IdItemType equals pt.IdItemType
                         where pt.ItemTypeName.Contains("soft drink") || pt.ItemTypeName.Contains("fries")
                         select new Product()
@@ -38,4 +38,5 @@ namespace GoodHamburguerAPI.Repository.Implementations
                         }).ToList();
             }
         }
+    }
 }
