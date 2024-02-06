@@ -6,9 +6,6 @@ namespace GoodHamburguerAPI.Model.GoodHamburguer;
 
 public partial class GoodHamburguerContext : DataAccess.GoodHamburguer
 {
-    public GoodHamburguerContext()
-    {
-    }
 
     public virtual DbSet<Changelog> Changelogs { get; set; }
 
