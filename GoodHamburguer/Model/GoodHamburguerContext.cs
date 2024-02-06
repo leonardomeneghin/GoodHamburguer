@@ -2,23 +2,19 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodHamburguerAPI.Model.GoodHamburguer;
+namespace GoodHamburguerAPI.Model;
 
 public partial class GoodHamburguerContext : DataAccess.GoodHamburguer
 {
-
     public virtual DbSet<Changelog> Changelogs { get; set; }
 
-    public virtual DbSet<LogsApi> LogsApis { get; set; }
+    public virtual DbSet<ItemOrdered> ItemOrdereds { get; set; }
 
-    public virtual DbSet<TbItemOrdered> TbItemOrdereds { get; set; }
+    public virtual DbSet<ItemType> ItemTypes { get; set; }
 
-    public virtual DbSet<TbItemType> TbItemTypes { get; set; }
+    public virtual DbSet<Order> Orders { get; set; }
 
-    public virtual DbSet<TbOrder> TbOrders { get; set; }
-
-    public virtual DbSet<TbProduct> TbProducts { get; set; }
-
+    public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,73 +53,66 @@ public partial class GoodHamburguerContext : DataAccess.GoodHamburguer
                 .HasColumnName("version");
         });
 
-        modelBuilder.Entity<LogsApi>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK_Logs");
-
-            entity.ToTable("Logs_API");
-
-            entity.Property(e => e.Level).HasMaxLength(128);
-            entity.Property(e => e.TimeStamp).HasColumnType("datetime");
-        });
-
-        modelBuilder.Entity<TbItemOrdered>(entity =>
+        modelBuilder.Entity<ItemOrdered>(entity =>
         {
             entity.HasKey(e => e.IdItemOrdered).HasName("PK_id_item_ordered");
 
-            entity.ToTable("tb_item_ordered");
+            entity.ToTable("item_ordered");
 
             entity.Property(e => e.IdItemOrdered).HasColumnName("id_item_ordered");
             entity.Property(e => e.IdOrder).HasColumnName("id_order");
             entity.Property(e => e.IdProduct).HasColumnName("id_product");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.TbItemOrdereds)
+            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.ItemOrdereds)
                 .HasForeignKey(d => d.IdOrder)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_tb_orders_tb_item_ordered");
+                .HasConstraintName("FK_orders_item_ordered");
 
-            entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.TbItemOrdereds)
+            entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.ItemOrdereds)
                 .HasForeignKey(d => d.IdProduct)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_tb_products_tb_item_ordered");
+                .HasConstraintName("FK_products_item_ordered");
         });
 
-        modelBuilder.Entity<TbItemType>(entity =>
+        modelBuilder.Entity<ItemType>(entity =>
         {
-            entity.HasKey(e => e.IdItemType).HasName("PK_id_item_type");
+            entity.HasKey(e => e.Id).HasName("PK_id_item_type");
 
-            entity.ToTable("tb_item_type");
+            entity.ToTable("item_type");
 
-            entity.Property(e => e.IdItemType).HasColumnName("id_item_type");
+            entity.Property(e => e.Id).HasColumnName("id_item_type");
             entity.Property(e => e.ItemTypeName)
                 .HasMaxLength(124)
                 .IsUnicode(false)
                 .HasColumnName("item_type_name");
         });
 
-        modelBuilder.Entity<TbOrder>(entity =>
+        modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.IdOrder).HasName("PK_orders");
+            entity.HasKey(e => e.Id).HasName("PK_orders");
 
-            entity.ToTable("tb_orders");
+            entity.ToTable("order");
 
-            entity.Property(e => e.IdOrder).HasColumnName("id_order");
+            entity.Property(e => e.Id).HasColumnName("id_order");
             entity.Property(e => e.DateOrder)
                 .HasColumnType("datetime")
                 .HasColumnName("date_order");
+            entity.Property(e => e.DiscountApplyed)
+                .HasColumnType("decimal(3, 2)")
+                .HasColumnName("discount_applyed");
             entity.Property(e => e.TotalPrice)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(9, 4)")
                 .HasColumnName("total_price");
         });
 
-        modelBuilder.Entity<TbProduct>(entity =>
+        modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.IdProduct).HasName("PK_id_product");
+            entity.HasKey(e => e.Id).HasName("PK_id_product");
 
-            entity.ToTable("tb_products");
+            entity.ToTable("product");
 
-            entity.Property(e => e.IdProduct).HasColumnName("id_product");
+            entity.Property(e => e.Id).HasColumnName("id_product");
             entity.Property(e => e.IdItemType).HasColumnName("id_item_type");
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
@@ -134,10 +123,10 @@ public partial class GoodHamburguerContext : DataAccess.GoodHamburguer
                 .HasColumnType("decimal(9, 4)")
                 .HasColumnName("price");
 
-            entity.HasOne(d => d.IdItemTypeNavigation).WithMany(p => p.TbProducts)
+            entity.HasOne(d => d.IdItemTypeNavigation).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdItemType)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_tb_item_type_tb_products");
+                .HasConstraintName("FK_item_type_products");
         });
 
         OnModelCreatingPartial(modelBuilder);

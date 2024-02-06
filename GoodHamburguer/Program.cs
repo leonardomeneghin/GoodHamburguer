@@ -3,7 +3,7 @@ using GoodHamburguerAPI.Business;
 using GoodHamburguerAPI.Business.implementations;
 using GoodHamburguerAPI.db.Services;
 using GoodHamburguerAPI.Helper;
-using GoodHamburguerAPI.Model.GoodHamburguer;
+using GoodHamburguerAPI.Model;
 using GoodHamburguerAPI.Repository;
 using GoodHamburguerAPI.Repository.Implementation;
 using GoodHamburguerAPI.Repository.Implementations;

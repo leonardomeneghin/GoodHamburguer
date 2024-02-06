@@ -1,5 +1,4 @@
 ﻿using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 
 namespace GoodHamburguerAPI.Repository.Implementations
 {
@@ -9,13 +8,13 @@ namespace GoodHamburguerAPI.Repository.Implementations
         {
             using (var context = new GoodHamburguerContext())
             {
-                return (from p in context.TbProducts
-                        join pt in context.TbItemTypes on p.IdItemType equals pt.IdItemType
+                return (from p in context.Products
+                        join pt in context.ItemTypes on p.IdItemType equals pt.Id
                         where pt.ItemTypeName.Contains("soft drink") || pt.ItemTypeName.Contains("fries")
                         select new Product()
                         {
-                            Id = p.IdProduct,
-                            id_item_type = pt.IdItemType,
+                            Id = p.Id,
+                            IdItemType = pt.Id,
                             Name = p.Name,
                             Price = p.Price
                         }).ToList();
@@ -26,13 +25,13 @@ namespace GoodHamburguerAPI.Repository.Implementations
         {
             using (var context = new GoodHamburguerContext())
             {
-                return (from p in context.TbProducts
-                        join pt in context.TbItemTypes on p.IdItemType equals pt.IdItemType
+                return (from p in context.Products
+                        join pt in context.ItemTypes on p.IdItemType equals pt.Id
                         where pt.ItemTypeName.Contains("sandwich")
                         select new Product()
                         {
-                            Id = p.IdProduct,
-                            id_item_type = pt.IdItemType,
+                            Id = p.Id,
+                            IdItemType = pt.Id,
                             Name = p.Name,
                             Price = p.Price
                         }).ToList();

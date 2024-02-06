@@ -1,6 +1,5 @@
 ﻿using GoodHamburguerAPI.Business;
 using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 using GoodHamburguerAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

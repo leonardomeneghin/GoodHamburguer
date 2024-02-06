@@ -1,5 +1,4 @@
 ﻿using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoodHamburguerAPI.Repository.Implementation

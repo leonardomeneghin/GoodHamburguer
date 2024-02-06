@@ -1,6 +1,5 @@
 ﻿using GoodHamburguerAPI.DTO;
 using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 using GoodHamburguerAPI.Repository.Implementation;
 
 namespace GoodHamburguerAPI.Repository.Implementations
@@ -13,13 +12,13 @@ namespace GoodHamburguerAPI.Repository.Implementations
             using(var context = new GoodHamburguerContext())
             {
                 var filter = products.Select(x => x.Id).ToList();
-                var entidades = (from p in context.TbProducts
-                                join tp in context.TbItemTypes on p.IdItemType equals tp.IdItemType
-                                where filter.Contains(p.IdProduct)
+                var entidades = (from p in context.Products
+                                join tp in context.ItemTypes on p.IdItemType equals tp.Id
+                                where filter.Contains(p.Id)
                                 select new ProductDTO()
                                 {
-                                    Id = p.IdProduct,
-                                    id_item_type = p.IdItemType,
+                                    Id = p.Id,
+                                    IdItemType = p.IdItemType,
                                     Name = p.Name,
                                     Price = p.Price,
                                     product_type_name = tp.ItemTypeName

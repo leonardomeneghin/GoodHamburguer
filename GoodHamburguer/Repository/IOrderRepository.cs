@@ -1,6 +1,5 @@
 ﻿using GoodHamburguerAPI.DTO;
 using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 
 namespace GoodHamburguerAPI.Repository
 {

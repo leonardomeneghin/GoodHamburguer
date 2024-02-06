@@ -1,7 +1,6 @@
 ﻿using GoodHamburguerAPI.Business.Rules.Discount.Discount.Interface;
 using GoodHamburguerAPI.DTO;
 using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 
 namespace GoodHamburguerAPI.Business.Rules.Discount.Discount
 {

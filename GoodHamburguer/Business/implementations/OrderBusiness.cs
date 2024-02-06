@@ -3,7 +3,6 @@ using GoodHamburguerAPI.Business.Rules.Discount.Discount;
 using GoodHamburguerAPI.Business.Rules.Discount.Discount.Interface;
 using GoodHamburguerAPI.DTO;
 using GoodHamburguerAPI.Model;
-using GoodHamburguerAPI.Model.GoodHamburguer;
 using GoodHamburguerAPI.Repository;
 using GoodHamburguerAPI.Repository.Implementation;
 

@@ -1,18 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GoodHamburguerAPI.Model
+namespace GoodHamburguerAPI.Model;
+
+public partial class Product : BaseEntity
 {
-    public class Product : BaseEntity
-    {
-        [Column("id_product")]
-        public override int Id {  get; set; }
+    [Column("id_product")]
+    public int Id { get; set; }
 
-        [Column("name")]
-        public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
-        [Column("price")]
-        public decimal? Price { get; set; }
-        [Column("id_item_type")]
-        public int id_item_type { get; set; }
-    }
+    public decimal? Price { get; set; }
+
+    public int IdItemType { get; set; }
+
+    public virtual ItemType IdItemTypeNavigation { get; set; } = null!;
+
+    public virtual ICollection<ItemOrdered> ItemOrdereds { get; set; } = new List<ItemOrdered>();
 }

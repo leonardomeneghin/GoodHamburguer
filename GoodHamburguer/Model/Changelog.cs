@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GoodHamburguerAPI.Model.GoodHamburguer;
+namespace GoodHamburguerAPI.Model;
 
 public partial class Changelog
 {
