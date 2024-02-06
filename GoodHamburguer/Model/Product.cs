@@ -11,7 +11,7 @@ namespace GoodHamburguerAPI.Model
         public string Name { get; set; }
 
         [Column("price")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
         [Column("id_item_type")]
         public int id_item_type { get; set; }
     }

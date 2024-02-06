@@ -3,9 +3,10 @@ using GoodHamburguerAPI.Business;
 using GoodHamburguerAPI.Business.implementations;
 using GoodHamburguerAPI.db.Services;
 using GoodHamburguerAPI.Helper;
+using GoodHamburguerAPI.Model.GoodHamburguer;
 using GoodHamburguerAPI.Repository;
 using GoodHamburguerAPI.Repository.Implementation;
-using Infrastructure.Model.Context;
+using GoodHamburguerAPI.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.WebSockets;
@@ -33,7 +34,7 @@ namespace GoodHamburguerAPI
 
             //add dbcontext here
 
-            builder.Services.AddDbContext<MSSQLContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddDbContext<GoodHamburguerContext>(options => options.UseSqlServer(connection));
 
             //migrations
             if (builder.Environment.IsDevelopment())
@@ -44,6 +45,7 @@ namespace GoodHamburguerAPI
             builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
 
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

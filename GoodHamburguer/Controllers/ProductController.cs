@@ -12,12 +12,12 @@ namespace GoodHamburguerAPI.Controllers
     {
         #region api-global-settings
         protected string controllerName = "ProductController";
-        private IProductBusiness _menuBusiness;
+        private IProductBusiness _productBusiness;
         #endregion
 
         ProductController(IProductBusiness product)
         {
-            _menuBusiness = product;
+            _productBusiness = product;
         }
         [HttpGet]
 
@@ -32,7 +32,7 @@ namespace GoodHamburguerAPI.Controllers
         {
             try
             {
-                _menuBusiness.ListAllMenuItems();
+                _productBusiness.ListAllMenuItems();
                 return Ok();
                 //Log Sucess
             }
@@ -50,7 +50,8 @@ namespace GoodHamburguerAPI.Controllers
         {
             try
             {
-                return Ok();
+                
+                return Ok(_productBusiness.ListSandwiches());
                 //Log Sucess
             }
             catch (Exception ex)
@@ -68,7 +69,7 @@ namespace GoodHamburguerAPI.Controllers
         {
             try
             {
-                return Ok();
+                return Ok(_productBusiness.ListExtras());
                 //Log Sucess
             }
             catch (Exception ex)

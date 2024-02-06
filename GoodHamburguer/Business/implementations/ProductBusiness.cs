@@ -7,9 +7,11 @@ namespace GoodHamburguerAPI.Business.implementations
     public class ProductBusiness : IProductBusiness
     {
         private IGenericRepository<Product> _repository;
-        public ProductBusiness(IGenericRepository<Product> repository)
+        private IProductRepository _productRepository;
+        public ProductBusiness(IGenericRepository<Product> repository, IProductRepository productRepository)
         {
             _repository = repository;
+            _productRepository = productRepository;
         }
         public List<Product> ListAllMenuItems()
         {
@@ -18,16 +20,13 @@ namespace GoodHamburguerAPI.Business.implementations
 
         public List<Product> ListExtras()
         {
-            var items = _repository.FindAll();
-            
-            items.Where(x => x.id_item_type.Equals());
-            
+            return _productRepository.ListAllExtrasOnly();           
 
         }
 
         public List<Product> ListSandwiches()
         {
-            throw new NotImplementedException();
+            return _productRepository.ListAllSandwichesOnly();
         }
     }
 }
