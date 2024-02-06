@@ -1,6 +1,7 @@
 ﻿using GoodHamburguerAPI.Business.Rules.Discount;
 using GoodHamburguerAPI.Business.Rules.Discount.Discount;
 using GoodHamburguerAPI.Business.Rules.Discount.Discount.Interface;
+using GoodHamburguerAPI.Business.Validators;
 using GoodHamburguerAPI.DTO;
 using GoodHamburguerAPI.Model;
 using GoodHamburguerAPI.Repository;
@@ -13,10 +14,12 @@ namespace GoodHamburguerAPI.Business.implementations
         private IGenericRepository<Order> _repository;
         private IOrderRepository _orderRepository;
         private IDiscountApply _discount;
+        private ProductValidator _productValidator;
         public OrderBusiness(IGenericRepository<Order> repository, IOrderRepository orderRepository)
         {
             _repository = repository;
             _orderRepository = orderRepository;
+            _productValidator = new ProductValidator();
         }
 
         public List<Order> ListOrders()
@@ -30,7 +33,7 @@ namespace GoodHamburguerAPI.Business.implementations
             //Obter todos os tipos de produtos que o usuário colocou.
             var productsWithTypeList = _orderRepository.GetProductTypes(products);
             //Chamar o validator aqui
-
+            _productValidator.Validate(products);
             //Verificar se aplica desconto
             var hasDrink = productsWithTypeList.Where(x => x.product_type_name.Contains("soft drink")).Select(p => p).Count();
             var hasFries = productsWithTypeList.Where(x => x.product_type_name.Contains("fries")).Select(p => p).Count();
