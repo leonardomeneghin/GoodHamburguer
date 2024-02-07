@@ -53,17 +53,17 @@ namespace GoodHamburguerAPI.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
         //TODO: Requirement 08: Create a endpoint to delete a order.
         [HttpDelete]
         [Route("deleteOrder")]
-        public IActionResult Delete([FromBody] Order order)
+        public IActionResult Delete([FromBody] OrderVO order)
         {
             try
             {
-                _business.RemoveOrder(order);
+                _business.RemoveOrder(new Order() { Id = order.Id });
                 return NoContent();
             }
             catch (Exception ex)
