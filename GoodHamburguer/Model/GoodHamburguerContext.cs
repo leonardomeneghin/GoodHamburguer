@@ -55,11 +55,11 @@ public partial class GoodHamburguerContext : DataAccess.GoodHamburguer
 
         modelBuilder.Entity<ItemOrdered>(entity =>
         {
-            entity.HasKey(e => e.IdItemOrdered).HasName("PK_id_item_ordered");
+            entity.HasKey(e => e.Id).HasName("PK_id_item_ordered");
 
             entity.ToTable("item_ordered");
 
-            entity.Property(e => e.IdItemOrdered).HasColumnName("id_item_ordered");
+            entity.Property(e => e.Id).HasColumnName("id_item_ordered");
             entity.Property(e => e.IdOrder).HasColumnName("id_order");
             entity.Property(e => e.IdProduct).HasColumnName("id_product");
 

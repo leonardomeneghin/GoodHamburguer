@@ -7,7 +7,7 @@ namespace GoodHamburguerAPI.Model;
 public partial class ItemOrdered : BaseEntity
 {
     [Column("id_item_ordered")]
-    public int IdItemOrdered { get; set; }
+    public int Id { get; set; }
 
     public int IdOrder { get; set; }
 

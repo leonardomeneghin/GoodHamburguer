@@ -1,0 +1,5 @@
+﻿
+1. Correct aplication of VO and DTO.
+2. Correct parse of DTO to VO and VO to DTO.
+3. I dont like to much to use generic repository like that...
+4. Should apply discount if our client want to update the order and put in conditions of discount.
